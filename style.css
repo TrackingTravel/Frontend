@@ -1,0 +1,147 @@
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    color: #111111;
+    font-style: normal;
+}
+
+.container {
+    max-width: 552px;
+    margin: 0 auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    margin: 0;
+    margin-bottom: 16px;
+}
+
+.form-item {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 4px;
+}
+
+.input {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #111111;
+
+    padding: 12px;
+    height: 48px;
+    margin-right: 4px;
+
+    background: inherit;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+}
+
+.input ::placeholder {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #A9A9A9;
+}
+
+.input-description {
+    height: 164px;
+}
+
+.description-count {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: right;
+    letter-spacing: 0.4px;
+    color: #A9A9A9;
+
+    margin: 0;
+    margin-top: 4px;
+}
+
+.button {
+    border: 1px solid #115E59;
+    border-radius: 8px;
+    background: #FFFFFF;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-foto {
+    width: 48px;
+    height: 48px;
+}
+
+.neighbour {
+    display: flex;
+}
+
+.neighbour-item {
+    flex-grow: 1;
+}
+
+.button-gpx {
+    width: 174px;
+    height: 48px;
+
+    padding: 12px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #115E59;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.submit {
+    width: 205px;
+    height: 56px;
+    background: #115E59;
+    border-radius: 8px;
+    border: none;
+
+    margin-top: 40px;
+    margin-bottom: 24px;
+    padding: 16px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+
+    align-items: center;
+    letter-spacing: 0.1px;
+    color: #FFFFFF;
+}
