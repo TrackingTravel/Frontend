@@ -34,13 +34,17 @@
             </div>
 
             <div class="form-item">
-                <label for="" class="label">Ссылка на фотографии маршрута</label>
-                <div class="neighbour">
-                    <input type="text" class="input neighbour-item" placeholder="Ссылка">
-                    <button type="button" class="button button-foto">
+                <p class="label">Ссылка на фотографии маршрута</p>
+
+                <input type="file" multiple id="file" accept="image/*">
+
+                <label for="file" class="neighbour">
+                    <input type="text" class="input neighbour-item" id="file-path" placeholder="Ссылка" readonly>
+                    <div class="button button-foto">
                         <img src="plus.svg" alt="plus">
-                    </button>
-                </div>
+                    </div>
+                </label>   
+                       
             </div>
 
             <div class="form-item">
@@ -62,11 +66,18 @@
             </div>
 
             <div class="form-item">
-                <label for="" class="label">Маршрут в формате GPX</label>
-                <button type="button" class="button button-gpx">
-                    <img src="clip.svg" alt="clip">
-                    Загрузить файл
-                </button>
+                <p class="label">Маршрут в формате GPX</p>
+
+                <input type="file" id="gpx" accept=".pdf">
+
+                <label for="gpx" class="neighbour">
+                    <div class="button button-gpx">
+                        <img src="clip.svg" alt="clip">
+                        Загрузить файл
+                    </div>
+                    <span id="gpx-path" class="label"></span>
+                </label>
+                
             </div>
 
             <button type="submit" class="submit">Загрузить маршрут</button>
