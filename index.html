@@ -33,17 +33,17 @@
                 </p>
             </div>
 
-            <div class="form-item">
+            <div class="form-item file">
                 <p class="label">Ссылка на фотографии маршрута</p>
 
-                <input type="file" multiple id="file" accept="image/*">
+                <!-- <input type="file" multiple id="file" accept="image/*"> -->
 
-                <label for="file" class="neighbour">
-                    <input type="text" class="input neighbour-item" id="file-path" placeholder="Ссылка" readonly>
-                    <div class="button button-foto">
+                <div class="neighbour">
+                    <input type="text" class="input neighbour-item file-path" placeholder="Ссылка">
+                    <button class="button button-foto" title = "Добавить еще одно поле для ввода ссылки">
                         <img src="plus.svg" alt="plus">
-                    </div>
-                </label>   
+                    </button>
+                </div>   
                        
             </div>
 
@@ -72,7 +72,7 @@
 
                 <label for="gpx" class="neighbour">
                     <div class="button button-gpx">
-                        <img src="clip.svg" alt="clip">
+                        <img src="clip.svg" alt="clip" class="clip">
                         Загрузить файл
                     </div>
                     <span id="gpx-path" class="label"></span>

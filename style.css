@@ -38,6 +38,7 @@ body {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
+    margin: 0;
     margin-bottom: 4px;
 }
 
@@ -84,11 +85,22 @@ body {
     margin-top: 4px;
 }
 
-#file {
+.neighbour {
+    display: flex;
+}
+
+.neighbour-item {
+    flex-grow: 1;
+}
+
+.file > .file-path {
+    margin-top: 4px;
+}
+/* #file {
     opacity: 0;
     position: absolute;
     z-index: -1;
-}
+} */
 
 .button {
     border: 1px solid #115E59;
@@ -101,18 +113,17 @@ body {
     cursor: pointer;
 }
 
+.button:hover{
+    background: #115E59;
+    color: #FFFFFF;
+}
+
 .button-foto {
     width: 48px;
     height: 48px;
 }
 
-.neighbour {
-    display: flex;
-}
 
-.neighbour-item {
-    flex-grow: 1;
-}
 
 .button-gpx {
     width: 174px;
@@ -136,6 +147,11 @@ body {
     opacity: 0;
     position: absolute;
     z-index: -1;
+}
+
+.clip {
+    width: 24px;
+    height: 24px;
 }
 
 #gpx-path {
@@ -164,4 +180,8 @@ body {
     align-items: center;
     letter-spacing: 0.1px;
     color: #FFFFFF;
+}
+
+.submit:hover {
+    background: #0D4743;
 }
