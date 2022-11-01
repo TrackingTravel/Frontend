@@ -8,40 +8,73 @@ description.addEventListener('input', () => {
 
 const btn = document.querySelector('.button-foto')
 
-btn.addEventListener('mouseover', () => {
-    btn.innerHTML = '<img src="plus_hover.svg" alt="plus">'
-})
+btn.addEventListener('mouseover', setHoverPicture)
+
+btn.addEventListener('mouseout', setUsualPicture)
+
+btn.addEventListener('click', addNewInput)
 
 
-btn.addEventListener('mouseout', () => {
-    btn.innerHTML = '<img src="plus.svg" alt="plus">'
-})
+function setUsualPicture() {
+  this.innerHTML = '<img src="plus.svg" alt="plus">'
+}
 
 
-btn.addEventListener('click', () => {
+function setHoverPicture() {
+    this.innerHTML = '<img src="plus_hover.svg" alt="plus">'
+}
+
+
+function addNewInput() {
     let check = document.querySelectorAll('.file-path')
     if (check[check.length-1].value == '') return
 
     let file = document.querySelector('.file')
 
+    removeButton(file)
+
+    file.append(addNeighbour())
+}
+
+
+function removeButton(parent) {
+    let neighbours =  parent.querySelectorAll('.neighbour')
+    let neighbour = neighbours[neighbours.length-1]
+    neighbour.removeChild(neighbour.querySelector('button'))
+}
+
+
+function addNeighbour() {
+    let neighbour =  document.createElement('div')
+    neighbour.classList.add('neighbour')
+    neighbour.append(addInput())
+    neighbour.append(addButton())
+    return neighbour
+}
+  
+function addInput() {
     let input = document.createElement('input')
-    input.classList.add('input', 'file-path')
+    input.classList.add('input', 'file-path', 'neighbour-item')
     input.setAttribute('type', 'text')
     input.setAttribute('placeholder', 'Ссылка')
-    /* input.title = 'tut' */
+    return input
+}
 
-    file.append(input)
-})
+function addButton() {
+    let button = document.createElement('button')
+    button.classList.add('button', 'button-foto')
+    button.setAttribute('title', 'Добавить еще одно поле для ввода ссылки')
+    button.innerHTML = '<img src="plus.svg" alt="plus">'
 
+    button.addEventListener('mouseover', setHoverPicture)
 
-/* const file = document.getElementById('file')
+    button.addEventListener('mouseout', setUsualPicture)
 
-file.addEventListener('change', () => {
-const fileList = this.files;
-    console.log(file.value)
-    document.getElementById("file-path").value = file.value;
+    button.addEventListener('click', addNewInput)
 
-}) */
+    return button
+}
+
 
 const gpx = document.getElementById('gpx')
 
