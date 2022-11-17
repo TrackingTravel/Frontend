@@ -6,13 +6,16 @@ description.addEventListener('input', () => {
 })
 
 
-const btn = document.querySelector('.button-foto')
+const btns = document.querySelectorAll('.button-foto')
 
-btn.addEventListener('mouseover', setHoverPicture)
+btns.forEach(btn => {
+    btn.addEventListener('mouseover', setHoverPicture)
 
-btn.addEventListener('mouseout', setUsualPicture)
+    btn.addEventListener('mouseout', setUsualPicture)
+    
+    btn.addEventListener('click', addNewInput)
+})
 
-btn.addEventListener('click', addNewInput)
 
 
 function setUsualPicture() {
@@ -25,7 +28,7 @@ function setHoverPicture() {
 }
 
 
-function addNewInput() {
+/* function addNewInput() {
     let check = document.querySelectorAll('.file-path')
     if (check[check.length-1].value == '') return
 
@@ -34,31 +37,72 @@ function addNewInput() {
     removeButton(file)
 
     file.append(addNeighbour())
+} */
+
+
+function addNewInput() {
+    let parent = this.parentElement
+    
+    let check = parent.querySelector('.file-path')
+    if (check.value == '') return
+  
+    removeButton(parent)
+    
+    let text = parent.querySelector('input').getAttribute('placeholder')
+    
+    let file = document.querySelector('.file')
+  
+    file.append(addNeighbour(text))
 }
 
 
-function removeButton(parent) {
+/* function removeButton(parent) {
     let neighbours =  parent.querySelectorAll('.neighbour')
     let neighbour = neighbours[neighbours.length-1]
     neighbour.removeChild(neighbour.querySelector('button'))
+} */
+
+
+function removeButton(parent) {
+    parent.removeChild(parent.querySelector('button'))
 }
 
 
-function addNeighbour() {
+/* function addNeighbour() {
     let neighbour =  document.createElement('div')
     neighbour.classList.add('neighbour')
     neighbour.append(addInput())
     neighbour.append(addButton())
     return neighbour
-}
+} */
   
-function addInput() {
+
+function addNeighbour(text) {
+    let neighbour =  document.createElement('div')
+    neighbour.classList.add('neighbour')
+    neighbour.append(addInput(text))
+    neighbour.append(addButton())
+    return neighbour
+}
+
+
+/* function addInput() {
     let input = document.createElement('input')
     input.classList.add('input', 'file-path', 'neighbour-item')
     input.setAttribute('type', 'text')
     input.setAttribute('placeholder', 'Ссылка')
     return input
+} */
+
+
+function addInput(text) {
+    let input = document.createElement('input')
+    input.classList.add('input', 'file-path', 'neighbour-item')
+    input.setAttribute('type', 'text')
+    input.setAttribute('placeholder', text)
+    return input
 }
+
 
 function addButton() {
     let button = document.createElement('button')
@@ -76,16 +120,16 @@ function addButton() {
 }
 
 
-const gpx = document.getElementById('gpx')
+/* const gpx = document.getElementById('gpx')
 
 gpx.addEventListener('change', () => {
     //const gpxfileList = this.files;
     console.log(gpx.value)
     document.getElementById("gpx-path").textContent = gpx.value;
-})
+}) */
 
 
-const download = document.querySelector('.button-gpx')
+/* const download = document.querySelector('.button-gpx')
 
 download.addEventListener('mouseover', () => {
     download.innerHTML = '<img src="clip_hover.svg" alt="clip" class="clip"> Загрузить файл'
@@ -94,5 +138,5 @@ download.addEventListener('mouseover', () => {
 
 download.addEventListener('mouseout', () => {
     download.innerHTML = '<img src="clip.svg" alt="clip" class="clip"> Загрузить файл'
-})
+}) */
 

@@ -34,16 +34,25 @@
             </div>
 
             <div class="form-item file">
-                <p class="label">Ссылка на фотографии маршрута</p>
+                <p class="label">Фотографии</p>
 
                 <!-- <input type="file" multiple id="file" accept="image/*"> -->
 
                 <div class="neighbour">
-                    <input type="text" class="input neighbour-item file-path" placeholder="Ссылка">
+                    <!-- <input type="text" class="input neighbour-item file-path" placeholder="Ссылка на фото карты"> -->
+                    <input type="text" class="input neighbour-item file-path" placeholder="Ссылка на фотографии с маршрута">
                     <button class="button button-foto" title = "Добавить еще одно поле для ввода ссылки">
                         <img src="plus.svg" alt="plus">
                     </button>
                 </div>   
+
+                <div class="neighbour">
+                    <input type="text" class="input neighbour-item file-path" placeholder="Ссылка на фото карты">
+                    <!-- <input type="text" class="input neighbour-item file-path" placeholder="Ссылка на маршрут"> -->
+                    <button class="button button-foto" title = "Добавить еще одно поле для ввода ссылки">
+                        <img src="plus.svg" alt="plus">
+                    </button>
+                </div>     
                        
             </div>
 
@@ -66,7 +75,7 @@
             </div>
 
             <div class="form-item">
-                <p class="label">Маршрут в формате GPX</p>
+                <!-- <p class="label">Маршрут в формате GPX</p>
 
                 <input type="file" id="gpx" accept=".pdf">
 
@@ -76,8 +85,11 @@
                         Загрузить файл
                     </div>
                     <span id="gpx-path" class="label"></span>
-                </label>
-                
+                </label> -->
+
+                <label for="" class="label">Ссылка на маршрут</label>
+                <input type="text" class="input" placeholder="Ссылка на маршрут">
+
             </div>
 
             <button type="submit" class="submit">Загрузить маршрут</button>
