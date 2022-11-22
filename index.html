@@ -34,26 +34,47 @@
             </div>
 
             <div class="form-item file">
-                <p class="label">Фотографии</p>
+                <p class="label">Фотографии с маршрута</p>
+
+                <input type="file" id="foto" accept=".pdf">
+
+                <label for="foto" class="neighbour">
+                    <div class="button button-foto">
+                        <img src="clip.svg" alt="clip" class="clip">
+                        Загрузить файл
+                    </div>
+                    <span id="foto-path" class="label"></span>
+                </label>
 
                 <!-- <input type="file" multiple id="file" accept="image/*"> -->
 
-                <div class="neighbour">
-                    <!-- <input type="text" class="input neighbour-item file-path" placeholder="Ссылка на фото карты"> -->
+                <!-- <div class="neighbour">
                     <input type="text" class="input neighbour-item file-path" placeholder="Ссылка на фотографии с маршрута">
                     <button class="button button-foto" title = "Добавить еще одно поле для ввода ссылки">
                         <img src="plus.svg" alt="plus">
                     </button>
-                </div>   
+                </div>    
 
                 <div class="neighbour">
                     <input type="text" class="input neighbour-item file-path" placeholder="Ссылка на фото карты">
-                    <!-- <input type="text" class="input neighbour-item file-path" placeholder="Ссылка на маршрут"> -->
                     <button class="button button-foto" title = "Добавить еще одно поле для ввода ссылки">
                         <img src="plus.svg" alt="plus">
                     </button>
-                </div>     
-                       
+                </div>  -->            
+            </div>
+
+            <div class="form-item">
+                <p class="label">Фотография карты маршрута</p>
+
+                <input type="file" id="map" accept=".pdf">
+
+                <label for="map" class="neighbour">
+                    <div class="button button-map">
+                        <img src="clip.svg" alt="clip" class="clip">
+                        Загрузить файл
+                    </div>
+                    <span id="map-path" class="label"></span>
+                </label>
             </div>
 
             <div class="form-item">

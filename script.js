@@ -6,6 +6,8 @@ description.addEventListener('input', () => {
 })
 
 
+/* 
+//кнопка с + и изменение картинки на ней
 const btns = document.querySelectorAll('.button-foto')
 
 btns.forEach(btn => {
@@ -25,10 +27,12 @@ function setUsualPicture() {
 
 function setHoverPicture() {
     this.innerHTML = '<img src="plus_hover.svg" alt="plus">'
-}
+} */
 
 
-/* function addNewInput() {
+/* 
+    //обработка переноса кнопки +, когда она была одна
+    function addNewInput() {
     let check = document.querySelectorAll('.file-path')
     if (check[check.length-1].value == '') return
 
@@ -37,9 +41,35 @@ function setHoverPicture() {
     removeButton(file)
 
     file.append(addNeighbour())
-} */
+} 
+
+function removeButton(parent) {
+    let neighbours =  parent.querySelectorAll('.neighbour')
+    let neighbour = neighbours[neighbours.length-1]
+    neighbour.removeChild(neighbour.querySelector('button'))
+}
+
+function addNeighbour() {
+    let neighbour =  document.createElement('div')
+    neighbour.classList.add('neighbour')
+    neighbour.append(addInput())
+    neighbour.append(addButton())
+    return neighbour
+}
 
 
+function addInput() {
+    let input = document.createElement('input')
+    input.classList.add('input', 'file-path', 'neighbour-item')
+    input.setAttribute('type', 'text')
+    input.setAttribute('placeholder', 'Ссылка')
+    return input
+} 
+
+*/
+
+/* 
+//обработка переноса кнопки + когда их много
 function addNewInput() {
     let parent = this.parentElement
     
@@ -56,25 +86,9 @@ function addNewInput() {
 }
 
 
-/* function removeButton(parent) {
-    let neighbours =  parent.querySelectorAll('.neighbour')
-    let neighbour = neighbours[neighbours.length-1]
-    neighbour.removeChild(neighbour.querySelector('button'))
-} */
-
-
 function removeButton(parent) {
     parent.removeChild(parent.querySelector('button'))
 }
-
-
-/* function addNeighbour() {
-    let neighbour =  document.createElement('div')
-    neighbour.classList.add('neighbour')
-    neighbour.append(addInput())
-    neighbour.append(addButton())
-    return neighbour
-} */
   
 
 function addNeighbour(text) {
@@ -84,15 +98,6 @@ function addNeighbour(text) {
     neighbour.append(addButton())
     return neighbour
 }
-
-
-/* function addInput() {
-    let input = document.createElement('input')
-    input.classList.add('input', 'file-path', 'neighbour-item')
-    input.setAttribute('type', 'text')
-    input.setAttribute('placeholder', 'Ссылка')
-    return input
-} */
 
 
 function addInput(text) {
@@ -118,25 +123,46 @@ function addButton() {
 
     return button
 }
+ */
 
 
-/* const gpx = document.getElementById('gpx')
+const buttonFoto = document.querySelector('.button-foto')
 
-gpx.addEventListener('change', () => {
+buttonFoto.addEventListener('mouseover', setClipWhite)
+
+buttonFoto.addEventListener('mouseout', setClipGreen)
+
+
+const buttonMap = document.querySelector('.button-map')
+
+buttonMap.addEventListener('mouseover', setClipWhite)
+
+buttonMap.addEventListener('mouseout', setClipGreen)
+
+
+function setClipWhite() {
+    this.innerHTML = '<img src="clip_hover.svg" alt="clip" class="clip"> Загрузить файл'
+}
+
+function setClipGreen() {
+    this.innerHTML = '<img src="clip.svg" alt="clip" class="clip"> Загрузить файл'
+}
+
+
+const foto = document.getElementById('foto')
+
+foto.addEventListener('change', () => {
     //const gpxfileList = this.files;
-    console.log(gpx.value)
-    document.getElementById("gpx-path").textContent = gpx.value;
-}) */
-
-
-/* const download = document.querySelector('.button-gpx')
-
-download.addEventListener('mouseover', () => {
-    download.innerHTML = '<img src="clip_hover.svg" alt="clip" class="clip"> Загрузить файл'
+    console.log(foto.value)
+    document.getElementById("foto-path").textContent = foto.value;
 })
 
 
-download.addEventListener('mouseout', () => {
-    download.innerHTML = '<img src="clip.svg" alt="clip" class="clip"> Загрузить файл'
-}) */
 
+const map = document.getElementById('map')
+
+map.addEventListener('change', () => {
+    //const gpxfileList = this.files;
+    console.log(map.value)
+    document.getElementById("map-path").textContent = map.value;
+})
