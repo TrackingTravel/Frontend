@@ -166,3 +166,97 @@ map.addEventListener('change', () => {
     console.log(map.value)
     document.getElementById("map-path").textContent = map.value;
 })
+
+
+/* let form = document.querySelector('.form')
+form.action = 'http://trackingtravel.me:8080/api/test-routes/create';
+form.method = 'POST'; */
+
+function serializeForm(formNode) {
+  const { elements } = formNode
+  /* const data = Array.from(elements)
+    .filter((item) => !!item.name)
+    .map((element) => {
+      const { name, value } = element
+
+      return { name, value }
+    })
+ */
+let data = {}
+  Array.from(elements)
+      .forEach((element) => {
+       // let obj
+        const { name, value } = element
+        if (name == '') return
+        data[name] = value
+        //console.log({ name, value })
+       // obj['name'] = name
+       // obj.value = value
+       // data[name] = obj
+      })
+
+      return data
+
+  //console.log('func', data)
+}
+
+let form = document.querySelector('.form')
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault()
+    let data = serializeForm(form)
+    /* event.action = 'http://trackingtravel.me:8080/api/test-routes/create';
+    event.method = 'POST' */
+
+    console.log(data)
+
+    /* let user = {
+      title: 'John',
+      description: 'Smith',
+      mapLink:'li',
+      mapPhoto: '/swagger.jpg',
+      photo: '/swagger.jpg',
+      peak: '1',
+      distance: '2',
+      duration: '3',
+      photo: '/swagger.jpg',
+    }; */
+
+      fetch(`http://trackingtravel.me:8080/api/test-routes/create`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      /* credentials: "omit" */
+      body: JSON.stringify(data)
+    })
+
+    
+
+    .then(function(response) {
+      console.log(response.status )    //=> number 100–599
+      //console.log(response.statusText) //=> String
+      //console.log(response.headers   ) //=> Headers
+      //console.log(response.url  )      //=> String
+      if (response.status != 200) {
+        console.log('what')
+        let result = document.querySelector('.result')
+        result.innerHTML = ''
+        result.innerHTML = '<p>Ошибка отправления</p>'
+        
+      }
+      console.log('хорошо')
+        return response.json()
+      })
+
+     .then(data => {
+        console.log(data)
+        //console.log('tut')
+    })
+
+  /*  .catch((error) => {  
+      console.log(error)
+    })  */
+    
+})
