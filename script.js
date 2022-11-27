@@ -188,6 +188,11 @@ let data = {}
        // let obj
         const { name, value } = element
         if (name == '') return
+        if (name == 'photo' || name == 'mapPhoto') {
+          let arr = [value]
+          data[name] = arr
+          return
+        }
         data[name] = value
         //console.log({ name, value })
        // obj['name'] = name
@@ -222,12 +227,12 @@ form.addEventListener('submit', (event) => {
       photo: '/swagger.jpg',
     }; */
 
-      fetch(`http://trackingtravel.me:8080/api/test-routes/create`, {
+      fetch(`https://api.trackingtravel.me/test-route/create`, {
       method: 'POST',
-      headers: {
+      /* headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      },
+      }, */
       /* credentials: "omit" */
       body: JSON.stringify(data)
     })
