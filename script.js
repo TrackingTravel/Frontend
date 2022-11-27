@@ -168,100 +168,40 @@ map.addEventListener('change', () => {
 })
 
 
-/* let form = document.querySelector('.form')
-form.action = 'http://trackingtravel.me:8080/api/test-routes/create';
-form.method = 'POST'; */
 
-function serializeForm(formNode) {
-  const { elements } = formNode
-  /* const data = Array.from(elements)
-    .filter((item) => !!item.name)
-    .map((element) => {
-      const { name, value } = element
 
-      return { name, value }
-    })
- */
-let data = {}
-  Array.from(elements)
-      .forEach((element) => {
-       // let obj
-        const { name, value } = element
-        if (name == '') return
-        if (name == 'photo' || name == 'mapPhoto') {
-          let arr = [value]
-          data[name] = arr
-          return
-        }
-        data[name] = value
-        //console.log({ name, value })
-       // obj['name'] = name
-       // obj.value = value
-       // data[name] = obj
-      })
-
-      return data
-
-  //console.log('func', data)
-}
 
 let form = document.querySelector('.form')
 
 form.addEventListener('submit', (event) => {
-    event.preventDefault()
-    let data = serializeForm(form)
-    /* event.action = 'http://trackingtravel.me:8080/api/test-routes/create';
-    event.method = 'POST' */
+  event.preventDefault()
 
-    console.log(data)
+  let result = document.querySelector('.result')
+  result.innerHTML = ''
 
-    /* let user = {
-      title: 'John',
-      description: 'Smith',
-      mapLink:'li',
-      mapPhoto: '/swagger.jpg',
-      photo: '/swagger.jpg',
-      peak: '1',
-      distance: '2',
-      duration: '3',
-      photo: '/swagger.jpg',
-    }; */
+  /* function dataFtomForm(formNode) {
+      return new FormData(formNode)
+  } */
 
-      fetch(`https://api.trackingtravel.me/test-route/create`, {
-      method: 'POST',
-      /* headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }, */
-      /* credentials: "omit" */
-      body: JSON.stringify(data)
+  let data = new FormData(form)
+
+  fetch(`https://api.trackingtravel.me/test-route/create`, {
+    method: 'POST',
+    body: data
+  })
+
+  .then(function(response) {
+    console.log(response.status )    //=> number 100–599
+
+    if (response.status > 299) {
+      result.innerHTML = '<p>Ошибка отправления</p>'
+      return
+    }
+    //console.log('hello')
+    result.innerHTML = '<p>Маршрут записан в базу данных</p>'
     })
-
-    
-
-    .then(function(response) {
-      console.log(response.status )    //=> number 100–599
-      //console.log(response.statusText) //=> String
-      //console.log(response.headers   ) //=> Headers
-      //console.log(response.url  )      //=> String
-      if (response.status != 200) {
-        console.log('what')
-        let result = document.querySelector('.result')
-        result.innerHTML = ''
-        result.innerHTML = '<p>Ошибка отправления</p>'
-        
-      }
-      console.log('хорошо')
-        return response.json()
-      })
-
-     .then(data => {
-        console.log(data)
-        //console.log('tut')
-    })
-
-  /*  .catch((error) => {  
-      console.log(error)
-    })  */
-    
+  
 })
+
+
+    
