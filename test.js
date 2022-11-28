@@ -85,7 +85,38 @@ let btnDel = document.querySelector('.button-del')
 btnDel.addEventListener('click', () => {
   let result = document.querySelector('.result')
   result.innerHTML = ''
-  result.innerHTML = '<p>Ведутся технические работы. Функция удаления маршрута скоро будет добавлена</p>'
+  
+
+
+  let input = document.querySelector('.input-del')
+    let inputValue = +input.value
+    //console.log(inputValue + 1)
+
+    fetch(`https://api.trackingtravel.me/test-route/${inputValue}`, {
+      method: 'DELETE',
+      /* headers: { 'Content-Type': 'application/json' },
+      credentials: "omit" */
+    })
+
+    .then(response => {
+      console.log(response.status)
+      result.innerHTML = 'Маршрут удален'
+    })
+
+/*     .then(data => {
+        //console.log(data)
+        let result = document.querySelector('.result')
+        result.innerHTML = 'ready'
+        setResult(data, result)
+    }) */
+
+/*     .catch((error) => {
+      let result = document.querySelector('.result')
+      result.innerHTML = ''
+      result.innerHTML = '<p>Ошибка. По выбранному id маршрут не найден</p>'
+      //console.log(error)
+    }) */
+
 })
 
 

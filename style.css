@@ -227,7 +227,7 @@ body {
 }
 
 .button-main {
-    position: fixed;
+    position: absolute;
     margin: 20px;
     top: 30px;
     left: 75px;
