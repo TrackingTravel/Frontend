@@ -1,3 +1,4 @@
+//счетчик символов в textarea
 let counter = document.querySelector('.counter');
 let description = document.querySelector('.input-description');
 
@@ -126,6 +127,7 @@ function addButton() {
  */
 
 
+//изменение цвета скрепки на кнопке при наведении курсора
 const buttonFoto = document.querySelector('.button-foto')
 
 buttonFoto.addEventListener('mouseover', setClipWhite)
@@ -149,6 +151,7 @@ function setClipGreen() {
 }
 
 
+//вывод имени выбранного файла
 const foto = document.getElementById('foto')
 
 foto.addEventListener('change', () => {
@@ -170,14 +173,14 @@ map.addEventListener('change', () => {
 
 
 
-
+//отправка данных на сервер
 let form = document.querySelector('.form')
 
 form.addEventListener('submit', (event) => {
   event.preventDefault()
 
   let result = document.querySelector('.result')
-  result.innerHTML = ''
+  //result.innerHTML = ''
 
   /* function dataFtomForm(formNode) {
       return new FormData(formNode)
@@ -194,14 +197,58 @@ form.addEventListener('submit', (event) => {
     console.log(response.status )    //=> number 100–599
 
     if (response.status > 299) {
-      result.innerHTML = '<p>Ошибка отправления</p>'
-      return
+        let mistake = document.querySelector('.mistake')
+        
+        toggleChoiseField(mistake)
+        setTimeout(() => {toggleChoiseField(mistake)}, 3000)
+        return
     }
     //console.log('hello')
-    result.innerHTML = '<p>Маршрут записан в базу данных</p>'
+    //result.innerHTML = '<p>Маршрут записан в базу данных</p>'
+    toggleChoiseField(result)
+    addEvensForButtons(result)
     })
   
 })
 
 
-    
+//вывод поля с кнопками после успешной отправки формы
+function toggleChoiseField(field) {
+    //let field = document.querySelector('.result')
+    field.classList.toggle('view')
+}
+
+function addEvensForButtons(parent) {
+    let goToMain = parent.querySelector('.return') 
+    goToMain.addEventListener('click', () => {
+        document.location='index.html'
+    })
+
+    let oneMore = parent.querySelector('.oneMore') 
+    oneMore.addEventListener('click', () => {
+        console.log('hello')
+        clearForm(form)
+        toggleChoiseField(document.querySelector('.result'))
+    })
+}
+
+//очистка формы перед ее повторным заполнением
+function clearForm(form) {
+    const { elements } = form
+    const data = Array.from(elements)
+    .filter((item) => !!item.name)
+    .forEach(element => {
+      element.value = ''
+    })
+
+    document.getElementById("foto-path").textContent = ''
+    document.getElementById("map-path").textContent = ''
+}
+
+
+//вернуться на главную
+let btnMain = document.querySelector('.button-main')
+
+btnMain.addEventListener('click', () => {
+    document.location='index.html'
+})

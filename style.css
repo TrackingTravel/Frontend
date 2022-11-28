@@ -12,6 +12,7 @@ body {
 .container {
     max-width: 552px;
     margin: 0 auto;
+    position: relative;
 }
 
 .form {
@@ -196,4 +197,38 @@ body {
 
 .submit:hover {
     background: #0D4743;
+}
+
+.result, .mistake {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    height: 250px;
+    width: 450px;
+    background-color: aquamarine;
+    bottom: 40vh;
+    left: 4vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-p {
+    font-weight: 400;
+    
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.view {
+    display: none;
+}
+
+.button-main {
+    position: fixed;
+    margin: 20px;
+    top: 30px;
+    left: 75px;
 }

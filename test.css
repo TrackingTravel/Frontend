@@ -1,0 +1,76 @@
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    color: #111111;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.variant {
+    min-width: 440px;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: center;
+    padding: 30px;
+    align-items: center;
+    margin: 20px;
+}
+
+.getAll {
+    background: darkgreen;
+}
+
+.get {
+    background: goldenrod;
+}
+
+.post {
+    background: dodgerblue;
+}
+
+.delete {
+    background: tomato;
+}
+
+.button {
+    border: 1px solid #23a9a8;
+    border-radius: 8px;
+    background: #29d4ef;
+    height: 30px;
+    width: 215px;
+    outline: 0;
+    cursor: pointer;
+}
+
+.button:hover{
+    background: #115E59;
+    color: #FFFFFF;
+}
+
+input {
+    border: 1px solid #23a9a8;
+    border-radius: 8px;
+    background: #FFFFFF;
+    height: 30px;
+    width: 215px;
+    margin: 5px 0;
+    outline: 0;
+}
+
+.result {
+    max-width: 800px;
+    margin: 0 auto;
+}
