@@ -154,10 +154,17 @@ function setClipGreen() {
 //вывод имени выбранного файла
 const foto = document.getElementById('foto')
 
-foto.addEventListener('change', () => {
+foto.addEventListener('change', (event) => {
     //const gpxfileList = this.files;
-    console.log(foto.value)
-    document.getElementById("foto-path").textContent = foto.value;
+    const fileList = event.target.files;
+    //console.log(fileList);
+    let files = ''
+    Array.from(fileList).forEach(file => {
+        //console.log(file.name)
+        files = files + file.name + ', '
+    })
+
+    document.getElementById("foto-path").textContent = files;
 })
 
 
