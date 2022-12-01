@@ -232,3 +232,23 @@ body {
     top: 30px;
     left: 75px;
 }
+
+.preview {
+    display: flex;
+    /* flex-wrap: wrap; */
+}
+
+.box-foto {
+    position: relative;
+}
+
+.box-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.preview-foto {
+    max-height: 100px;
+    max-width: 200px;
+}

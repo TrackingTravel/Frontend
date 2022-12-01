@@ -153,28 +153,96 @@ function setClipGreen() {
 
 //вывод имени выбранного файла
 const foto = document.getElementById('foto')
+let previews = document.querySelectorAll('.preview')
 
 foto.addEventListener('change', (event) => {
+    let preview = previews[0]
     //const gpxfileList = this.files;
+    
     const fileList = event.target.files;
-    //console.log(fileList);
+    
+    //document.getElementById("foto-path").textContent = files; 
+    let text = document.getElementById("foto-path")
+    showFiles(fileList, preview, text)
+})
+
+
+function showFiles(fileList, preview, text) {
+    preview.innerHTML = ''
+    
     let files = ''
     Array.from(fileList).forEach(file => {
-        //console.log(file.name)
+
+        addPrviewFile(file, preview)
+        
         files = files + file.name + ', '
     })
 
-    document.getElementById("foto-path").textContent = files;
-})
+    text.textContent = files;
+}
+
+
+function addPrviewFile(file, preview) {
+    let box = document.createElement("div");
+    box.classList.add('box-foto')
+    box.dataset.name = file.name
+
+    let button = document.createElement("button");
+    button.textContent = 'x'
+    button.classList.add('box-button')
+    button.addEventListener('click', deleteFotoBox)
+
+    let img = document.createElement("img");
+    img.classList.add('preview-foto')
+    img.src = URL.createObjectURL(file)
+
+    box.appendChild(img); 
+    box.appendChild(button); 
+
+    preview.appendChild(box); 
+} 
+
+
+function deleteFotoBox(event) {
+    let item = event.target
+    
+    let parent = item.parentElement
+    let name = parent.dataset.name
+
+    let grandParent = parent.parentElement.parentElement
+    let fotos = grandParent.querySelector('input')
+
+    const fileList = fotos.files;
+    let newFileList = new DataTransfer()
+    Array.from(fileList).forEach(file => {
+        if (file.name != name) {
+            newFileList.items.add(file)
+        } 
+    })
+
+    fotos.files = newFileList.files
+
+    let preview = grandParent.querySelector('.preview')
+    let text = grandParent.querySelector('span')
+    
+    showFiles(fotos.files, preview, text)
+}
 
 
 
 const map = document.getElementById('map')
 
-map.addEventListener('change', () => {
+map.addEventListener('change', (event) => {
     //const gpxfileList = this.files;
     console.log(map.value)
-    document.getElementById("map-path").textContent = map.value;
+    //document.getElementById("map-path").textContent = map.value;
+    let preview = previews[1]
+
+    const fileList = event.target.files;
+    
+    let text = document.getElementById("map-path")
+
+    showFiles(fileList, preview, text)
 })
 
 
