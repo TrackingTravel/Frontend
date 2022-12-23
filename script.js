@@ -322,7 +322,7 @@ function clearForm(form) {
 
 
 //вернуться на главную
-let btnMain = document.querySelector('.button-main')
+let btnMain = document.querySelector('.button-create')
 
 btnMain.addEventListener('click', () => {
     document.location='index.html'

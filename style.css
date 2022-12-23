@@ -15,6 +15,37 @@ body {
     position: relative;
 }
 
+.header {
+    background: #FFFFFF;
+    margin-bottom: 80px;
+}
+
+.container-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.button-create {
+    width: 185px;
+    height: 40px;
+    border: 0;
+    background: #115E59;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+}
+
+.button-create:hover {
+    background: #0D4743;
+}
+
 .form {
     display: flex;
     flex-direction: column;
@@ -226,12 +257,12 @@ body {
     display: none;
 }
 
-.button-main {
+/* .button-main {
     position: absolute;
     margin: 20px;
     top: 30px;
     left: 75px;
-}
+} */
 
 .preview {
     display: flex;

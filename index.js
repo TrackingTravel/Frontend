@@ -1,38 +1,33 @@
-/* let btns = document.querySelectorAll('button')
+let btnCreate = document.querySelector('.button-create')
 
-btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      console.log('hello')
-  })
-}) */
+btnCreate.addEventListener('click', () => {
+  document.location='form.html'
+})
+
 
 document.addEventListener("DOMContentLoaded", getAllRoads);
 
 function getAllRoads() {
   fetch('https://api.trackingtravel.me/test-routes', {
     method: 'GET',
-      /* headers: { 'Content-Type': 'application/json' },
-      credentials: "omit" */
+    /* headers: { 'Content-Type': 'application/json' },
+    credentials: "omit" */
   })
 
   .then(response => response.json())
 
   .then(data => {
     console.log(data)
-    let result = document.querySelector('.result')
-    result.innerHTML = ''
     let main = document.querySelector('.main')
+    //main.innerHTML = '';
+
     data.forEach(item => {
-      //setResult(item, result)
       createSection(main, item)
     })
-
   })
 
   .catch(() => {
-    let result = document.querySelector('.result')
-    result.innerHTML = ''
-    result.innerHTML = '<p>Ошибка</p>'
+    console.log('Ошибка')
   })
 }
 
@@ -70,7 +65,7 @@ btnGetAll.addEventListener('click', () => {
 
   
 
-let btnGet = document.querySelector('.button-get')
+/* let btnGet = document.querySelector('.button-get')
 
 btnGet.addEventListener('click', () => {
     //console.log('hi')
@@ -80,8 +75,8 @@ btnGet.addEventListener('click', () => {
 
     fetch(`https://api.trackingtravel.me/test-route/${inputValue}`, {
       method: 'GET',
-      /* headers: { 'Content-Type': 'application/json' },
-      credentials: "omit" */
+      //headers: { 'Content-Type': 'application/json' },
+      //credentials: "omit" 
     })
 
     .then(response => response.json())
@@ -99,17 +94,10 @@ btnGet.addEventListener('click', () => {
       result.innerHTML = '<p>Ошибка. По выбранному id маршрут не найден</p>'
       //console.log(error)
     })
-})
+}) */
 
 
-let btnCreate = document.querySelector('.button-create')
-
-btnCreate.addEventListener('click', () => {
-  document.location='form.html'
-})
-
-
-let btnDel = document.querySelector('.button-del')
+/* let btnDel = document.querySelector('.button-del')
 
 btnDel.addEventListener('click', () => {
   let result = document.querySelector('.result')
@@ -123,14 +111,12 @@ btnDel.addEventListener('click', () => {
 
     fetch(`https://api.trackingtravel.me/test-route/${inputValue}`, {
       method: 'DELETE',
-      /* headers: { 'Content-Type': 'application/json' },
-      credentials: "omit" */
     })
 
     .then(response => {
       console.log(response.status)
       result.innerHTML = 'Маршрут удален'
-    })
+    }) */
 
 /*     .then(data => {
         //console.log(data)
@@ -146,10 +132,10 @@ btnDel.addEventListener('click', () => {
       //console.log(error)
     }) */
 
-})
+//})
 
 
-function setResult(item, result) {
+/* function setResult(item, result) {
   let box = document.createElement('div')
 
   let id = document.createElement('p')
@@ -195,7 +181,7 @@ function setResult(item, result) {
 
   result.append(box)
   result.append(document.createElement('br'))
-}
+} */
 
 
 
@@ -212,7 +198,6 @@ function createSection(main, item) {
   section.append(addTablePart(titleArray, valueArray));
 
   main.append(section);
-  //debugger
 }
 
 
@@ -221,7 +206,7 @@ function createManagment(item) {
   management.classList.add('management');
 
   management.append(createManagmentItem(item));
-  management.append(addButtons())
+  management.append(addButtons(item.id))
   //console.log('hi')
   return management;
 }
@@ -240,30 +225,80 @@ function createManagmentItem(item) {
 }
 
 
-function addButtons() {
+function addButtons(index) {
   let div = document.createElement('div');
   
-  let edit = addButton(['buttons', 'buttons-edit'], "./icon/edit.svg", "edit");
+  let edit = addButton(['buttons', 'buttons-edit'], "./icon/edit.svg", "edit", index);
   div.append(edit);
 
-  let del = addButton(['buttons', 'buttons-del'], "./icon/delete.svg", "delete");
-  div.append(del)
+  let del = addButton(['buttons', 'buttons-del'], "./icon/delete.svg", "delete", index);
+  div.append(del);
   return div;
 }
 
 
-function addButton(classes, url, text) {
+function addButton(classes, url, text, index) {
   let button = document.createElement('button');
   classes.forEach(clas => {
     button.classList.add(clas);
   })
+
+  button.dataset.index = index;
   
   let img = document.createElement('img');
   img.src = url;
   img.alt = text;
-
   button.append(img);
+
+  button.addEventListener('click', (event) => {
+    console.log('hello')
+    let id = +event.currentTarget.dataset.index;
+    if (button.classList.contains('buttons-del')) {
+      removeRoad(event, id);
+    }
+    
+  })
   return button;
+}
+
+
+function removeRoad(event, id) {
+  let parent = event.currentTarget.parentElement.parentElement;
+
+  let div = document.createElement('div');
+  div.classList.add('removeInfo');
+  div.textContent = 'Вы уверены что хотите удалить данный маршрут?';
+
+  let box = document.createElement('div');
+  box.classList.add('removeInfo-button-box');
+
+  let buttonYes = document.createElement('button');
+  buttonYes.classList.add('removeInfo-button');
+  buttonYes.textContent = 'Удалить';
+  buttonYes.addEventListener('click', (event) => {
+    fetch(`https://api.trackingtravel.me/test-route/${id}`, {
+      method: 'DELETE',
+    })
+
+    .then(response => {
+      console.log(response.status);
+      parent.innerHTML = 'Маршрут удален';
+      setTimeout(() => {getAllRoads()}, 3000);
+    })
+  })
+  box.append(buttonYes);
+
+  let buttonNo = document.createElement('button');
+  buttonNo.classList.add('removeInfo-button');
+  buttonNo.textContent = 'Отмена';
+  buttonNo.addEventListener('click', (event) => {
+    let child = event.currentTarget.parentElement.parentElement;
+    parent.removeChild(child);
+  })
+  box.append(buttonNo);
+  
+  div.append(box);
+  parent.append(div);
 }
 
 
@@ -290,7 +325,7 @@ function addTablePart(titleArray, valueArray) {
     tablePart.append(addTableItem(titleArray[i], valueArray[i]));
   }
 
-  return tablePart
+  return tablePart;
 }
 
 
@@ -310,9 +345,9 @@ function addTableItem(title, text) {
   } else {
     let link = document.createElement('a');
     link.href = text
-    link.target = '_blank'
-    link.textContent = 'Link'
-    itemValue.append(link)
+    link.target = '_blank';
+    link.textContent = 'Link';
+    itemValue.append(link);
   }
   
   div.append(itemValue);
