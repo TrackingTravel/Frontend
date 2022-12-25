@@ -195,7 +195,9 @@ function createSection(main, item) {
 
   let titleArray = ['Description', 'Photo'];
   let valueArray = [item.description, item.photo];
-  section.append(addTablePart(titleArray, valueArray));
+  let lastTablePart = addTablePart(titleArray, valueArray);
+  lastTablePart.classList.add('last')
+  section.append(lastTablePart);
 
   main.append(section);
 }
@@ -227,8 +229,9 @@ function createManagmentItem(item) {
 
 function addButtons(index) {
   let div = document.createElement('div');
+  div.classList.add('management-buttons-box')
   
-  let edit = addButton(['buttons', 'buttons-edit'], "./icon/edit.svg", "edit", index);
+  let edit = addButton(['buttons', 'buttons-edit'], "", "", index);
   div.append(edit);
 
   let del = addButton(['buttons', 'buttons-del'], "./icon/delete.svg", "delete", index);
@@ -245,10 +248,12 @@ function addButton(classes, url, text, index) {
 
   button.dataset.index = index;
   
-  let img = document.createElement('img');
-  img.src = url;
-  img.alt = text;
-  button.append(img);
+  if (button.classList.contains('buttons-del')) {
+    let img = document.createElement('img');
+    img.src = url;
+    img.alt = text;
+    button.append(img);
+  }
 
   button.addEventListener('click', (event) => {
     console.log('hello')
@@ -312,24 +317,24 @@ function createTable(item) {
 
   titleArray = ['Distance', 'Duration', 'Height Peak'];
   valueArray = [item.distanceRoute, item.durationRoute, item.heightPeak];
-  table.append(addTablePart(titleArray, valueArray));
+  table.append(addTablePart(titleArray, valueArray, 'width'));
   return table;
 }
 
 
-function addTablePart(titleArray, valueArray) {
+function addTablePart(titleArray, valueArray, newItemClass) {
   let tablePart = document.createElement('div');
   tablePart.classList.add('table-part');
 
   for (let i = 0; i < titleArray.length; i++) {
-    tablePart.append(addTableItem(titleArray[i], valueArray[i]));
+    tablePart.append(addTableItem(titleArray[i], valueArray[i], newItemClass));
   }
 
   return tablePart;
 }
 
 
-function addTableItem(title, text) {
+function addTableItem(title, text, newItemClass) {
   let div = document.createElement('div');
   div.classList.add('table-item');
 
@@ -340,14 +345,26 @@ function addTableItem(title, text) {
 
   let itemValue = document.createElement('div');
   itemValue.classList.add('table-item-value');
-  if (title !== 'Link to Map') {
-    itemValue.textContent = text;
-  } else {
+  if (newItemClass) {
+    itemValue.classList.add(newItemClass);
+  }
+
+  if (title === 'Link to Map') {
     let link = document.createElement('a');
     link.href = text
     link.target = '_blank';
     link.textContent = 'Link';
     itemValue.append(link);
+  } else if (title === 'Photo') {
+    text.forEach(foto => {
+      let div = document.createElement('div');
+      div.classList.add('photo')
+      div.style.backgroundImage = `url(${foto.uri})`
+
+      itemValue.append(div)
+    })
+  } else {
+    itemValue.textContent = text;
   }
   
   div.append(itemValue);

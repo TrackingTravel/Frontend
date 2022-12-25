@@ -144,6 +144,10 @@ input {
     line-height: 32px;
 }
 
+.management-buttons-box {
+    display: flex;
+}
+
 .buttons {
     width: 40px;
     height: 40px;
@@ -157,11 +161,27 @@ input {
 .buttons-edit {
     border: 1px solid #115E59;
     background: transparent;
+    background-image: url(./icon/edit.svg);
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.buttons-edit:hover {
+    background: #115E59;
+    background-image: url(./icon/edit-hover.svg);
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .buttons-del {
     background: #E01920;
     border: 0;
+}
+
+.buttons-del:hover {
+    background: #A81318;
 }
 
 .table {
@@ -244,6 +264,9 @@ input {
     align-items: center;
     margin-right: 8px;
     margin-bottom: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .removeInfo {
