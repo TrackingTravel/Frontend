@@ -34,13 +34,13 @@
             <h1 class="title">Добавление нового маршрута</h1>
 
             <div class="form-item">
-                <label for="" class="label">Название маршрута</label>
-                <input type="text" class="input" placeholder="Название" minlength='5' name="title" required>
+                <label for="title" class="label">Название маршрута</label>
+                <input type="text" id="title" class="input" placeholder="Название" minlength='5' name="title" required>
             </div>
 
             <div class="form-item">
-                <label for="" class="label">Описание маршрута</label>
-                <textarea class="input input-description" placeholder="Напишите" minlength='5' maxlength="10000" name="description" required></textarea>
+                <label for="description" class="label">Описание маршрута</label>
+                <textarea class="input input-description" id="description" placeholder="Напишите" minlength='5' maxlength="10000" name="description" required></textarea>
                 <p class="description-count">
                     <span class="counter">0</span>/10000
                 </p>
@@ -101,19 +101,19 @@
             </div>
 
             <div class="form-item">
-                <label for="" class="label">Пиковая высота маршрута</label>
-                <input type="text" class="input" placeholder="100 м" name="peak" required>
+                <label for="peak" class="label">Пиковая высота маршрута</label>
+                <input type="text" class="input" id="peak" placeholder="100 м" name="peak" required>
             </div>
 
             <div class="form-item">
-                <label for="" class="label">Длина маршрута</label>
-                <input type="text" class="input" placeholder="0.5 км" name="distance" required>
+                <label for="distance" class="label">Длина маршрута</label>
+                <input type="text" class="input" id="distance" placeholder="0.5 км" name="distance" required>
             </div>
 
             <div class="form-item">
-                <label for="" class="label">Длительность маршрута</label>
+                <label for="duration" class="label">Длительность маршрута</label>
                 <div class="neighbour">
-                    <input type="text" class="input neighbour-item" placeholder="1 ч 25 мин" name="duration" required>
+                    <input type="text" class="input neighbour-item" id="duration" placeholder="1 ч 25 мин" name="duration" required>
                     <!-- <input type="text" class="input neighbour-item" placeholder="25 мин"> -->
                 </div>
             </div>
@@ -131,8 +131,8 @@
                     <span id="gpx-path" class="label"></span>
                 </label> -->
 
-                <label for="" class="label">Ссылка на маршрут</label>
-                <input type="text" class="input" minlength='5' placeholder="Ссылка на маршрут" name="mapLink" required>
+                <label for="mapLink" class="label">Ссылка на маршрут</label>
+                <input type="text" class="input" id="mapLink" minlength='5' placeholder="Ссылка на маршрут" name="mapLink" required>
 
             </div>
 

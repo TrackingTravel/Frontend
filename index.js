@@ -1,6 +1,7 @@
 let btnCreate = document.querySelector('.button-create')
 
 btnCreate.addEventListener('click', () => {
+  localStorage.setItem('index', -1);
   document.location='form.html'
 })
 
@@ -255,11 +256,13 @@ function addButton(classes, url, text, index) {
     button.append(img);
   }
 
-  button.addEventListener('click', (event) => {
-    console.log('hello')
+  button.addEventListener('click', (event) => {   
     let id = +event.currentTarget.dataset.index;
     if (button.classList.contains('buttons-del')) {
       removeRoad(event, id);
+    } else {
+      localStorage.setItem('index', id);
+      document.location='form.html';
     }
     
   })
