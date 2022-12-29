@@ -8,7 +8,7 @@ description.addEventListener('input', () => {
 
 
 
-console.log(+localStorage.getItem('index'))
+//console.log(+localStorage.getItem('index'))
 
 document.addEventListener("DOMContentLoaded", () => {
     getRoadById(+localStorage.getItem('index'))
@@ -33,10 +33,38 @@ function getRoadById(id) {
             let description = document.getElementById('description')
             description.value = data.description
 
-            /* let photo = document.getElementById('foto')
-            photo.value = data.photo
+            let photo = document.getElementById('foto')
+            //photo.value = data.photo
+            data.photo.forEach(foto => {
+                /* let url = foto.uri
+                let nameFile =foto.name; */
+                /* console.log(url, '   =   ', nameFile)
+                const file = new File([url],nameFile)
+                photo.files = file */
 
-            let mapPhoto = document.getElementById('map')
+
+
+                // Создадим файл:
+                let data = foto.uri;
+                let file = new File([data], foto.name, {type: foto.type});
+
+                // Создаем коллекцию файлов:
+                let collection = new DataTransfer();
+                collection.items.add(file);
+                let file_list = collection.files;
+
+                console.log('Коллекция файлов создана:');
+                
+
+                // Вставим созданную коллекцию в реальное поле:
+                photo.files = file_list;
+            })
+            const fileList = photo.files;
+            let preview = document.querySelector('.preview')
+            let text = document.getElementById("foto-path")
+            showFiles(fileList, preview, text)
+            
+            /* let mapPhoto = document.getElementById('map')
             mapPhoto.value = data.mapPhoto */
 
             let heightPeak = document.getElementById('peak')
@@ -66,124 +94,7 @@ function getRoadById(id) {
     }
 }
 
-/* 
-//кнопка с + и изменение картинки на ней
-const btns = document.querySelectorAll('.button-foto')
 
-btns.forEach(btn => {
-    btn.addEventListener('mouseover', setHoverPicture)
-
-    btn.addEventListener('mouseout', setUsualPicture)
-    
-    btn.addEventListener('click', addNewInput)
-})
-
-
-
-function setUsualPicture() {
-  this.innerHTML = '<img src="plus.svg" alt="plus">'
-}
-
-
-function setHoverPicture() {
-    this.innerHTML = '<img src="plus_hover.svg" alt="plus">'
-} */
-
-
-/* 
-    //обработка переноса кнопки +, когда она была одна
-    function addNewInput() {
-    let check = document.querySelectorAll('.file-path')
-    if (check[check.length-1].value == '') return
-
-    let file = document.querySelector('.file')
-
-    removeButton(file)
-
-    file.append(addNeighbour())
-} 
-
-function removeButton(parent) {
-    let neighbours =  parent.querySelectorAll('.neighbour')
-    let neighbour = neighbours[neighbours.length-1]
-    neighbour.removeChild(neighbour.querySelector('button'))
-}
-
-function addNeighbour() {
-    let neighbour =  document.createElement('div')
-    neighbour.classList.add('neighbour')
-    neighbour.append(addInput())
-    neighbour.append(addButton())
-    return neighbour
-}
-
-
-function addInput() {
-    let input = document.createElement('input')
-    input.classList.add('input', 'file-path', 'neighbour-item')
-    input.setAttribute('type', 'text')
-    input.setAttribute('placeholder', 'Ссылка')
-    return input
-} 
-
-*/
-
-/* 
-//обработка переноса кнопки + когда их много
-function addNewInput() {
-    let parent = this.parentElement
-    
-    let check = parent.querySelector('.file-path')
-    if (check.value == '') return
-  
-    removeButton(parent)
-    
-    let text = parent.querySelector('input').getAttribute('placeholder')
-    
-    let file = document.querySelector('.file')
-  
-    file.append(addNeighbour(text))
-}
-
-
-function removeButton(parent) {
-    parent.removeChild(parent.querySelector('button'))
-}
-  
-
-function addNeighbour(text) {
-    let neighbour =  document.createElement('div')
-    neighbour.classList.add('neighbour')
-    neighbour.append(addInput(text))
-    neighbour.append(addButton())
-    return neighbour
-}
-
-
-function addInput(text) {
-    let input = document.createElement('input')
-    input.classList.add('input', 'file-path', 'neighbour-item')
-    input.setAttribute('type', 'text')
-    input.setAttribute('placeholder', text)
-    return input
-}
-
-
-function addButton() {
-    let button = document.createElement('button')
-    button.classList.add('button', 'button-foto')
-    button.setAttribute('title', 'Добавить еще одно поле для ввода ссылки')
-    button.innerHTML = '<img src="plus.svg" alt="plus">'
-
-    button.addEventListener('mouseover', setHoverPicture)
-
-    button.addEventListener('mouseout', setUsualPicture)
-
-    button.addEventListener('click', addNewInput)
-
-    return button
-}
- */
 
 
 //изменение цвета скрепки на кнопке при наведении курсора
@@ -216,7 +127,6 @@ let previews = document.querySelectorAll('.preview')
 
 foto.addEventListener('change', (event) => {
     let preview = previews[0]
-    //const gpxfileList = this.files;
     
     const fileList = event.target.files;
     
@@ -339,6 +249,8 @@ form.addEventListener('submit', (event) => {
   .then(function(response) {
     console.log(response.status )    //=> number 100–599
 
+    localStorage.index = -1;
+    
     if (response.status > 299) {
         let mistake = document.querySelector('.mistake')
         
@@ -384,8 +296,12 @@ function clearForm(form) {
       element.value = ''
     })
 
-    document.getElementById("foto-path").textContent = ''
-    document.getElementById("map-path").textContent = ''
+    document.getElementById("foto-path").textContent = '';
+    document.getElementById("map-path").textContent = '';
+
+    document.querySelectorAll('.preview').forEach(item => {
+        item.innerHTML = '';
+    })
 }
 
 

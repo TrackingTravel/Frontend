@@ -20,7 +20,7 @@ function getAllRoads() {
   .then(data => {
     console.log(data)
     let main = document.querySelector('.main')
-    //main.innerHTML = '';
+    main.innerHTML = '';
 
     data.forEach(item => {
       createSection(main, item)
