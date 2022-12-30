@@ -298,6 +298,7 @@ function clearForm(form) {
 
     document.getElementById("foto-path").textContent = '';
     document.getElementById("map-path").textContent = '';
+    document.querySelector('.counter').textContent = '0';
 
     document.querySelectorAll('.preview').forEach(item => {
         item.innerHTML = '';
