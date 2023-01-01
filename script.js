@@ -7,9 +7,6 @@ description.addEventListener('input', () => {
 })
 
 
-
-//console.log(+localStorage.getItem('index'))
-
 document.addEventListener("DOMContentLoaded", () => {
     getRoadById(+localStorage.getItem('index'))
 });
@@ -32,40 +29,53 @@ function getRoadById(id) {
 
             let description = document.getElementById('description')
             description.value = data.description
-
-            let photo = document.getElementById('foto')
-            //photo.value = data.photo
-            data.photo.forEach(foto => {
-                /* let url = foto.uri
-                let nameFile =foto.name; */
-                /* console.log(url, '   =   ', nameFile)
-                const file = new File([url],nameFile)
-                photo.files = file */
-
-
-
-                // Создадим файл:
-                let data = foto.uri;
-                let file = new File([data], foto.name, {type: foto.type});
-
-                // Создаем коллекцию файлов:
-                let collection = new DataTransfer();
-                collection.items.add(file);
-                let file_list = collection.files;
-
-                console.log('Коллекция файлов создана:');
-                
-
-                // Вставим созданную коллекцию в реальное поле:
-                photo.files = file_list;
-            })
-            const fileList = photo.files;
-            let preview = document.querySelector('.preview')
-            let text = document.getElementById("foto-path")
-            showFiles(fileList, preview, text)
+            counter.textContent = description.textLength
             
-            /* let mapPhoto = document.getElementById('map')
-            mapPhoto.value = data.mapPhoto */
+            let previews = document.querySelectorAll('.preview')         
+
+            data.photo.forEach(foto => {             
+                //Входные параметры:
+                let input_element = document.getElementById('foto');
+                let file_name = foto.name;
+                let file_link = foto.uri;
+                let preview = previews[0];
+                let text = document.getElementById("foto-path");
+
+                // Вызовем функцию для вставки файла:
+                setFile(input_element, file_name, file_link, preview, text);
+            })
+
+            data.mapPhoto.forEach(foto => {
+                //Входные параметры:
+                let input_element = document.getElementById('map');
+                let file_name = foto.name;
+                let file_link = foto.uri;
+                let preview = previews[1];
+                let text = document.getElementById("map-path");
+
+                // Вызовем функцию для вставки файла:
+                setMapFile(input_element, file_name, file_link, preview, text);
+
+                async function setMapFile(input, name, url, preview, text) {
+                try {
+                    let blob = await (await fetch(url)).blob();
+                    const dt  = new DataTransfer();
+                    dt.items.add(new File([blob], name, {type: blob.type}));
+                    input.files = dt.files;
+                    console.log('Файл успешно вставлен:');
+                    console.dir(input.files);
+
+                    
+                    showFiles(input.files, preview, text)
+                // return true;
+                }
+                catch(err) {
+                    console.log('Ошибка при вставке файла:');
+                    console.dir(err);
+                // return false;
+                }
+                }
+            })
 
             let heightPeak = document.getElementById('peak')
             heightPeak.value = data.heightPeak
@@ -78,23 +88,34 @@ function getRoadById(id) {
 
             let linkToMap = document.getElementById('mapLink')
             linkToMap.value = data.linkToMap
-
-
-            /* let result = document.querySelector('.result')
-            result.innerHTML = ''
-            setResult(data, result) */
         })
 
         .catch((error) => {
-            /* let result = document.querySelector('.result')
-            result.innerHTML = ''
-            result.innerHTML = '<p>Ошибка. По выбранному id маршрут не найден</p>' */
             console.log(error)
         })
     }
 }
 
 
+const dt  = new DataTransfer();
+async function setFile(input, name, url, preview, text) {
+  try {
+    let blob = await (await fetch(url)).blob();
+    
+    dt.items.add(new File([blob], name, {type: blob.type}));
+    input.files = dt.files;
+    console.log('Файл успешно вставлен:');
+    console.dir(input.files);
+    
+    showFiles(input.files, preview, text)
+   // return true;
+  }
+  catch(err) {
+    console.log('Ошибка при вставке файла:');
+    console.dir(err);
+   // return false;
+  }
+}
 
 
 //изменение цвета скрепки на кнопке при наведении курсора
@@ -129,7 +150,7 @@ foto.addEventListener('change', (event) => {
     let preview = previews[0]
     
     const fileList = event.target.files;
-    
+    //console.dir(fileList);
     //document.getElementById("foto-path").textContent = files; 
     let text = document.getElementById("foto-path")
     showFiles(fileList, preview, text)
@@ -143,7 +164,7 @@ function showFiles(fileList, preview, text) {
     Array.from(fileList).forEach(file => {
 
         addPrviewFile(file, preview)
-        
+       // debugger
         files = files + file.name + ', '
     })
 
@@ -155,16 +176,16 @@ function addPrviewFile(file, preview) {
     let box = document.createElement("div");
     box.classList.add('box-foto')
     box.dataset.name = file.name
-
+//debugger
     let button = document.createElement("button");
     button.textContent = 'x'
     button.classList.add('box-button')
     button.addEventListener('click', deleteFotoBox)
-
+//debugger
     let img = document.createElement("img");
     img.classList.add('preview-foto')
     img.src = URL.createObjectURL(file)
-
+//debugger
     box.appendChild(img); 
     box.appendChild(button); 
 
