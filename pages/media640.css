@@ -1,0 +1,19 @@
+@media screen and (max-width: 640px) {
+    .container {
+        max-width: 560px;
+    }
+
+    .form {
+        margin: 48px 20px 0;
+    }
+
+    .title {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .form-item {
+        margin-top: 16px;
+    }
+
+}

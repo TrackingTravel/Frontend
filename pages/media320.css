@@ -1,0 +1,14 @@
+@media screen and (max-width: 320px) {
+    .container {
+        max-width: 280px;
+    }
+
+    .button-gpx {
+        width: auto;
+    }
+
+    .submit {
+        width: auto;
+    }
+
+}
