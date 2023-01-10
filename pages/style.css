@@ -234,23 +234,50 @@ body {
     display: flex;
     position: absolute;
     z-index: 1;
-    height: 250px;
-    width: 450px;
-    background-color: aquamarine;
+    /* height: 250px;*/
+    width: 450px; 
+
+    background: #FFFFFF;
+    box-shadow: 0px 16px 24px rgba(2, 9, 9, 0.16);
+    border-radius: 8px;
+    border: 1px solid black; 
+    padding: 32px;
+
     bottom: 40vh;
-    left: 4vw;
+    /* left: 4vw; */
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+.result-button {
+    /* margin-right: 16px; */
+    padding: 8px 15px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 170px;
+}
+
+.result-button:first-of-type {
+    margin-right: 10px;
+}
+
 .result-p {
     font-weight: 400;
     
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 24px;
+    line-height: 32px;
     margin: 0;
-    margin-bottom: 4px;
+    margin-bottom: 14px;
+    text-align: center;
 }
 
 .view {
