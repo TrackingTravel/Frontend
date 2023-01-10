@@ -126,13 +126,26 @@ function removeRoad(event, id) {
 
   let div = document.createElement('div');
   div.classList.add('removeInfo');
-  div.textContent = 'Вы уверены что хотите удалить данный маршрут?';
+
+  let paragraph = document.createElement('p');
+  paragraph.classList.add('removeTitle');
+  paragraph.textContent = 'Вы уверены, что хотите удалить данный маршрут?';
+  div.append(paragraph);
 
   let box = document.createElement('div');
   box.classList.add('removeInfo-button-box');
 
+  let buttonNo = document.createElement('button');
+  buttonNo.classList.add('buttons-edit', 'removeInfo-button');
+  buttonNo.textContent = 'Отмена';
+  buttonNo.addEventListener('click', (event) => {
+    let child = event.currentTarget.parentElement.parentElement;
+    parent.removeChild(child);
+  })
+  box.append(buttonNo);
+
   let buttonYes = document.createElement('button');
-  buttonYes.classList.add('removeInfo-button');
+  buttonYes.classList.add('buttons-del', 'removeInfo-button');
   buttonYes.textContent = 'Удалить';
   buttonYes.addEventListener('click', (event) => {
     fetch(`https://api.trackingtravel.me/test-route/${id}`, {
@@ -147,14 +160,7 @@ function removeRoad(event, id) {
   })
   box.append(buttonYes);
 
-  let buttonNo = document.createElement('button');
-  buttonNo.classList.add('removeInfo-button');
-  buttonNo.textContent = 'Отмена';
-  buttonNo.addEventListener('click', (event) => {
-    let child = event.currentTarget.parentElement.parentElement;
-    parent.removeChild(child);
-  })
-  box.append(buttonNo);
+  
   
   div.append(box);
   parent.append(div);

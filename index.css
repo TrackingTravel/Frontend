@@ -98,6 +98,7 @@ body {
     background-size: 18px;
     background-repeat: no-repeat;
     background-position: center;
+    color: #115E59;
 }
 
 .buttons-edit:hover {
@@ -106,11 +107,13 @@ body {
     background-size: 18px;
     background-repeat: no-repeat;
     background-position: center;
+    color: #F5F5F5;
 }
 
 .buttons-del {
     background: #E01920;
     border: 0;
+    color: #F5F5F5;
 }
 
 .buttons-del:hover {
@@ -203,16 +206,35 @@ body {
 }
 
 .removeInfo {
-    background: aquamarine;
-    width: 400px;
-    height: 120px;
+    width: 375px;
+    padding: 32px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 55px;
+    top: 125px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
     right: 0;
+
+    background: #FFFFFF;
+    box-shadow: 0px 16px 24px rgba(2, 9, 9, 0.16);
+    border-radius: 8px;
+
+    border: 1px solid black; 
+}
+
+.removeTitle {  
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+
+    margin:0;
+    margin-bottom: 24px;
+    padding: 0;
 }
 
 .removeInfo-button-box {
@@ -221,5 +243,22 @@ body {
 }
 
 .removeInfo-button {
-    margin: 10px;
+    
+    border-radius: 4px;
+    background-image: none;
+    padding: 8px 20px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.removeInfo-button:first-of-type {
+    margin-right: 16px;
+}
+
+.removeInfo-button:hover {
+    background-image: none;
 }
