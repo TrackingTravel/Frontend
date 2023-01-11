@@ -51,17 +51,18 @@
 
                 <input type="file" id="foto" accept="image/*" multiple name="photo" required>
 
-                <label for="foto" class="neighbour">
-                    <div class="button button-foto">
-                        <img src="../icon/clip.svg" alt="clip" class="clip">
-                        Загрузить файл
+                <div class="neighbour">
+                    <label for="foto" >
+                        <button class="button button-foto neighbour-item">
+                            <img src="../icon/clip.svg" alt="clip" class="clip">
+                            Загрузить файл
+                        </button>
+                    </label>
+                    <div id="foto-path" class="neighbour-item">
+                        <!-- <p  class="label"></p> -->
                     </div>
-                    <div>
-                        <span id="foto-path" class="label"></span>
-                    </div>
-                    
-                </label>
-                
+                </div>
+                                
                 <div class="preview"></div>
 
                 <!-- <input type="file" multiple id="file" accept="image/*"> -->
@@ -85,17 +86,18 @@
                 <p class="label">Фотография карты маршрута</p>
 
                 <input type="file" id="map" accept="image/*" name="mapPhoto" required>
-
-                <label for="map" class="neighbour">
-                    <div class="button button-map">
-                        <img src="../icon/clip.svg" alt="clip" class="clip">
-                        Загрузить файл
+                
+                <div class="neighbour">
+                    <label for="map" >
+                        <button class="button button-map">
+                            <img src="../icon/clip.svg" alt="clip" class="clip">
+                            Загрузить файл
+                        </button>   
+                    </label>
+                    <div id="map-path">
+                        <!-- <p  class="label"></p> -->
                     </div>
-                    <div>
-                        <span id="map-path" class="label"></span>
-                    </div>
-                    
-                </label>
+                </div>
 
                 <div class="preview"></div>
             </div>

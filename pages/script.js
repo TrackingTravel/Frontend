@@ -159,16 +159,22 @@ foto.addEventListener('change', (event) => {
 
 function showFiles(fileList, preview, text) {
     preview.innerHTML = ''
-    
-    let files = ''
+    text.innerHTML = ''
+    /* let files = '' */
     Array.from(fileList).forEach(file => {
 
+
         addPrviewFile(file, preview)
-       // debugger
-        files = files + file.name + ', '
+        let paragraph = document.createElement('p')
+        paragraph.classList.add('label', 'words')
+        //debugger
+        paragraph.innerHTML = file.name
+        text.appendChild(paragraph)
+       
+        /* files = files + file.name + ', ' */
     })
 
-    text.textContent = files;
+    //text.textContent = files;
 }
 
 
