@@ -46,6 +46,9 @@ function createSection(main, item) {
   section.append(createTable(item));
 
   let titleArray = ['Description', 'Photo'];
+
+  item.photo.push(item.mapPhoto[0])
+  //console.log(item.photo)
   let valueArray = [item.description, item.photo];
   let lastTablePart = addTablePart(titleArray, valueArray);
   lastTablePart.classList.add('last')
