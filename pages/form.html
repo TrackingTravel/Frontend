@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="media1024.css" type="text/css">
+    <link rel="stylesheet" href="media640.css" type="text/css">
+    <link rel="stylesheet" href="media320.css" type="text/css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <title>Tracking Travel form</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container container-header">
+          <div>
+            <img src="../icon/logo.svg" alt="logo">
+          </div>
+          <button class="button-create">
+            Вернуться на главную
+          </button>
+        </div>
+      </header>
+
+    <!-- <button class="button button-main">Вернуться на главную</button> -->
+    <div class="container">
+
+        <form action="/apply/" class="form" method="post">
+            <h1 class="title">Добавление нового маршрута</h1>
+
+            <div class="form-item">
+                <label for="title" class="label">Название маршрута</label>
+                <input type="text" id="title" class="input" placeholder="Название" minlength='5' name="title" required>
+            </div>
+
+            <div class="form-item">
+                <label for="description" class="label">Описание маршрута</label>
+                <textarea class="input input-description" id="description" placeholder="Напишите" minlength='5' maxlength="10000" name="description" required></textarea>
+                <p class="description-count">
+                    <span class="counter">0</span>/10000
+                </p>
+            </div>
+
+            <div class="form-item file">
+                <p class="label">Фотографии с маршрута</p>
+
+                <input type="file" id="foto" accept="image/*" multiple name="photo" required>
+
+                <div class="neighbour">
+                    <label for="foto" >
+                        <button class="button button-foto neighbour-item">
+                            <img src="../icon/clip.svg" alt="clip" class="clip">
+                            Загрузить файл
+                        </button>
+                    </label>
+                    <div id="foto-path" class="neighbour-item">
+                        <!-- <p  class="label"></p> -->
+                    </div>
+                </div>
+                                
+                <div class="preview"></div>
+
+                <!-- <input type="file" multiple id="file" accept="image/*"> -->
+
+                <!-- <div class="neighbour">
+                    <input type="text" class="input neighbour-item file-path" placeholder="Ссылка на фотографии с маршрута">
+                    <button class="button button-foto" title = "Добавить еще одно поле для ввода ссылки">
+                        <img src="plus.svg" alt="plus">
+                    </button>
+                </div>    
+
+                <div class="neighbour">
+                    <input type="text" class="input neighbour-item file-path" placeholder="Ссылка на фото карты">
+                    <button class="button button-foto" title = "Добавить еще одно поле для ввода ссылки">
+                        <img src="plus.svg" alt="plus">
+                    </button>
+                </div>  -->            
+            </div>
+
+            <div class="form-item">
+                <p class="label">Фотография карты маршрута</p>
+
+                <input type="file" id="map" accept="image/*" name="mapPhoto" required>
+                
+                <div class="neighbour">
+                    <label for="map" >
+                        <button class="button button-map">
+                            <img src="../icon/clip.svg" alt="clip" class="clip">
+                            Загрузить файл
+                        </button>   
+                    </label>
+                    <div id="map-path">
+                        <!-- <p  class="label"></p> -->
+                    </div>
+                </div>
+
+                <div class="preview"></div>
+            </div>
+
+            <div class="form-item">
+                <label for="peak" class="label">Пиковая высота маршрута</label>
+                <input type="text" class="input" id="peak" placeholder="100 м" name="peak" required>
+            </div>
+
+            <div class="form-item">
+                <label for="distance" class="label">Длина маршрута</label>
+                <input type="text" class="input" id="distance" placeholder="0.5 км" name="distance" required>
+            </div>
+
+            <div class="form-item">
+                <label for="duration" class="label">Длительность маршрута</label>
+                <div class="neighbour">
+                    <input type="text" class="input neighbour-item" id="duration" placeholder="1 ч 25 мин" name="duration" required>
+                    <!-- <input type="text" class="input neighbour-item" placeholder="25 мин"> -->
+                </div>
+            </div>
+
+            <div class="form-item">
+                <!-- <p class="label">Маршрут в формате GPX</p>
+
+                <input type="file" id="gpx" accept=".pdf">
+
+                <label for="gpx" class="neighbour">
+                    <div class="button button-gpx">
+                        <img src="clip.svg" alt="clip" class="clip">
+                        Загрузить файл
+                    </div>
+                    <span id="gpx-path" class="label"></span>
+                </label> -->
+
+                <label for="mapLink" class="label">Ссылка на маршрут</label>
+                <input type="text" class="input" id="mapLink" minlength='5' placeholder="Ссылка на маршрут" name="mapLink" required>
+
+            </div>
+
+            <button type="submit" class="submit">Загрузить маршрут</button>
+            
+        </form>
+        <div class="result view">
+            <p class="result-p ">Данные успешно отправлены</p>
+            <p>Выберите вариант для продолжения работы:</p>
+            <div class="neighbour ">
+                <button class="button result-button neighbour-item return">Вернуться на главную</button>
+                <button class="button result-button neighbour-item oneMore">Ввести данные нового маршрута</button>
+            </div>
+        </div>
+        <div class="mistake view">
+            <p class="result-p ">Что-то пошло не так...</p>
+            <p class="result-p ">Проверьте правильность введенных данных</p>
+            <!-- <p class="result-p ">В текстовых полях должно быть не менее 5 символов</p> -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
