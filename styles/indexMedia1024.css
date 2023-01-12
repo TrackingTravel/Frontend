@@ -6,4 +6,18 @@
     .header {
         margin-bottom: 40px;
     }
+
+    .table-item-value {
+        min-width: auto;
+    }
+    
+    .width {
+        min-width: auto;
+    }
+
+    .table-item-value {
+
+        min-width: auto;
+
+    }
 }

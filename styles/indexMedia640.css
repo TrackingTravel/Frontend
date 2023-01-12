@@ -14,4 +14,10 @@
     .for-remove {
         display: none;
     }
+
+    .table-item-value {
+
+        min-width: auto;
+
+    }
 }
